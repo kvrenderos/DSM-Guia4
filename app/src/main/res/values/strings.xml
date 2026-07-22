@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Guia4</string>
+    <string name="permiso_audio_concedido">Permiso para grabar concedido</string>
+    <string name="permiso_audio_denegado">Permiso para grbar denegado</string>
+    <string name="permiso_audio_denegado_usuario">Permiso para grabar denegado por el usuario</string>
+    <string name="permisos_audio_concedido_usuario">Permiso para grabar concedido por el usuario</string>
+    <string name="permisos_audio_requerido">Permiso para acceder al micrófono es requerido por esta App para grabar audio</string>
+</resources>
