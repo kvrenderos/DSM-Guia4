@@ -1,8 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Guia4</string>
+    <string name="audio_recorder_title">Grabadora de Audio</string>
+    <string name="iniciar_grabacion">Iniciar Grabacion</string>
+    <string name="estado_esperando_permiso">Esperando permiso</string>
+    <string name="estado_grabando">Grabando</string>
+    <string name="estado_permiso_denegado">Permiso denegado</string>
+    <string name="abrir_activity_camara">Abrir Activity Camara</string>
+    <string name="permiso_audio_denegado">Permiso para grabar denegado</string>
     <string name="permiso_audio_concedido">Permiso para grabar concedido</string>
-    <string name="permiso_audio_denegado">Permiso para grbar denegado</string>
     <string name="permiso_audio_denegado_usuario">Permiso para grabar denegado por el usuario</string>
-    <string name="permisos_audio_concedido_usuario">Permiso para grabar concedido por el usuario</string>
-    <string name="permisos_audio_requerido">Permiso para acceder al micrófono es requerido por esta App para grabar audio</string>
+    <string name="permiso_audio_concedido_usuario">Permiso para grabar concedido por el usuario</string>
+    <string name="permiso_audio_requerido">Permiso para acceder al microfono es requerido por esta App para grabar audio.</string>
+    <string name="permiso_camara_denegado">Permiso para camara denegado</string>
+    <string name="permiso_camara_concedido">Permiso para camara concedido</string>
+    <string name="permiso_camara_requerido">Permiso para acceder a la camara es requerido por esta App para tomar fotos.</string>
+    <string name="camara_title">Verificacion de permisos\n\nCamara</string>
+    <string name="camera_permission_title">Permiso requerido</string>
+    <string name="camera_permission_reason">La app necesita permiso de cámara para simular la fotografía de tu perfil.</string>
+    <string name="camera_permission_granted">Permiso de cámara concedido. Foto lista para el perfil.</string>
+    <string name="camera_permission_denied">No se puede acceder a la cámara sin el permiso correspondiente.</string>
+    <string name="accept">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="required_field">Este campo es obligatorio</string>
+    <string name="invalid_email">Ingresa un correo válido</string>
+    <string name="invalid_phone">Ingresa solo números, de 8 a 15 dígitos</string>
+    <string name="invalid_date">Usa el formato dd/mm/aaaa</string>
+    <string name="correct_form_errors">Revisa los datos marcados antes de continuar</string>
 </resources>

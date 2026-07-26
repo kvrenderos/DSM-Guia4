@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/profile_surface"
+    android:fillViewport="true"
+    tools:context=".RegisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registro de perfil"
+            android:textColor="@color/profile_ink"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Ingresa tus datos personales para crear el resumen."
+            android:textColor="@color/profile_muted"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/card_panel"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView style="@style/FormLabel" android:text="Nombres y apellidos" />
+            <EditText
+                android:id="@+id/edtFullName"
+                style="@style/FormInput"
+                android:inputType="textPersonName" />
+
+            <TextView style="@style/FormLabel" android:text="Correo electronico" />
+            <EditText
+                android:id="@+id/edtEmail"
+                style="@style/FormInput"
+                android:inputType="textEmailAddress" />
+
+            <TextView style="@style/FormLabel" android:text="Numero de telefono" />
+            <EditText
+                android:id="@+id/edtPhone"
+                style="@style/FormInput"
+                android:inputType="phone"
+                android:maxLength="15" />
+
+            <TextView style="@style/FormLabel" android:text="Fecha de nacimiento" />
+            <EditText
+                android:id="@+id/edtBirthDate"
+                style="@style/FormInput"
+                android:hint="dd/mm/aaaa"
+                android:inputType="date"
+                android:maxLength="10" />
+
+            <TextView style="@style/FormLabel" android:text="Direccion de residencia" />
+            <EditText
+                android:id="@+id/edtAddress"
+                style="@style/FormInput"
+                android:gravity="top"
+                android:inputType="textPostalAddress|textMultiLine"
+                android:minLines="2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/photo_panel"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fotografia"
+                android:textColor="@color/profile_ink"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtCameraStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/status_neutral"
+                android:padding="12dp"
+                android:text="Aun no se ha solicitado el permiso de camara."
+                android:textColor="@color/profile_muted"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/btnTakePhoto"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/button_outline"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="Tomar foto"
+                android:textColor="@color/profile_primary"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_primary"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="Guardar"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</ScrollView>

@@ -1,9 +1,12 @@
 package com.example.guia4
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -14,15 +17,31 @@ class MainActivity : AppCompatActivity() {
 
     private val TAG = "Guia4-Permisos"
     private val CODIGO_SOLICITUD_GRABAR = 101
+    private lateinit var btnIniciarGrabacion: Button
+    private lateinit var btnCamara: Button
+    private lateinit var txtEstadoGrabacion: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        btnIniciarGrabacion = findViewById(R.id.btnIniciarGrabacion)
+        btnCamara = findViewById(R.id.btnCamara)
+        txtEstadoGrabacion = findViewById(R.id.txtEstadoGrabacion)
+
         configurarPermiso()
+
+        btnIniciarGrabacion.setOnClickListener {
+            iniciarGrabacion()
+        }
+
+        btnCamara.setOnClickListener {
+            val intent = Intent(this, CamaraActivity::class.java)
+            startActivity(intent)
+        }
     }
 
-    //1. Comprobar estado del permiso
+    // 1. Comprobar estado del permiso
     private fun comprobarEstadoPermiso() {
         val estadoPermiso = ContextCompat.checkSelfPermission(
             this,
@@ -30,14 +49,15 @@ class MainActivity : AppCompatActivity() {
         )
 
         if (estadoPermiso == PackageManager.PERMISSION_GRANTED) {
-            Log.i(TAG, "Permiso concedido")
+            Log.i(TAG, getString(R.string.permiso_audio_concedido))
         } else {
-            Log.i(TAG, "Permiso denegado")
+            Log.i(TAG, getString(R.string.permiso_audio_denegado))
         }
     }
 
-    //2. Configurar permiso
+    // 2. Configurar permiso
     private fun configurarPermiso() {
+        comprobarEstadoPermiso()
 
         val estadoPermiso = ContextCompat.checkSelfPermission(
             this,
@@ -45,8 +65,9 @@ class MainActivity : AppCompatActivity() {
         )
 
         if (estadoPermiso != PackageManager.PERMISSION_GRANTED) {
-
             Log.i(TAG, getString(R.string.permiso_audio_denegado))
+            txtEstadoGrabacion.text = getString(R.string.estado_esperando_permiso)
+            btnIniciarGrabacion.isEnabled = false
 
             val mostrarRequest =
                 ActivityCompat.shouldShowRequestPermissionRationale(
@@ -58,7 +79,7 @@ class MainActivity : AppCompatActivity() {
 
                 AlertDialog.Builder(this)
                     .setTitle("Permiso requerido")
-                    .setMessage(getString(R.string.permisos_audio_requerido))
+                    .setMessage(getString(R.string.permiso_audio_requerido))
                     .setPositiveButton("OK") { _, _ ->
                         solicitudPermiso()
                     }
@@ -70,13 +91,28 @@ class MainActivity : AppCompatActivity() {
             }
 
         } else {
-
-            Log.i(TAG, "Permiso ya concedido")
-
+            Log.i(TAG, getString(R.string.permiso_audio_concedido))
+            btnIniciarGrabacion.isEnabled = true
+            txtEstadoGrabacion.text = getString(R.string.estado_esperando_permiso)
         }
     }
 
-    //3. Solicitar permiso
+    private fun iniciarGrabacion() {
+        val estadoPermiso = ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.RECORD_AUDIO
+        )
+
+        if (estadoPermiso == PackageManager.PERMISSION_GRANTED) {
+            txtEstadoGrabacion.text = getString(R.string.estado_grabando)
+            Log.i(TAG, getString(R.string.estado_grabando))
+        } else {
+            txtEstadoGrabacion.text = getString(R.string.estado_esperando_permiso)
+            solicitudPermiso()
+        }
+    }
+
+    // 3. Solicitar permiso
     private fun solicitudPermiso() {
 
         ActivityCompat.requestPermissions(
@@ -86,7 +122,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    //4. Resultado del permiso
+    // 4. Resultado del permiso
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
@@ -107,17 +143,21 @@ class MainActivity : AppCompatActivity() {
                     grantResults[0] == PackageManager.PERMISSION_GRANTED
                 ) {
 
-                    Log.i(TAG, getString(R.string.permisos_audio_concedido_usuario))
+                    Log.i(TAG, getString(R.string.permiso_audio_concedido_usuario))
+                    txtEstadoGrabacion.text = getString(R.string.estado_esperando_permiso)
+                    btnIniciarGrabacion.isEnabled = true
 
                     Toast.makeText(
                         this,
-                        getString(R.string.permisos_audio_concedido_usuario),
+                        getString(R.string.permiso_audio_concedido_usuario),
                         Toast.LENGTH_SHORT
                     ).show()
 
                 } else {
 
                     Log.i(TAG, getString(R.string.permiso_audio_denegado_usuario))
+                    txtEstadoGrabacion.text = getString(R.string.estado_permiso_denegado)
+                    btnIniciarGrabacion.isEnabled = false
 
                     Toast.makeText(
                         this,
@@ -125,7 +165,7 @@ class MainActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
 
-                    /*Codigo cuando el usuario conseda el permiso */
+                    /* Codigo cuando el usuario deniegue el permiso */
                 }
             }
         }
